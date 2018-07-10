@@ -1,0 +1,38 @@
+<% include partials/header %>
+
+  <body>
+    <h1>
+      <%= body %>
+    </h1>
+    <% if(errors != undefined){ %>
+      <ul>
+          <% errors.forEach(function(error){ %>
+            <li>
+              <%= error.msg %>
+            </li>
+            <% }) %>
+        </ul>
+    <% } %>
+    
+    <form method="POST" action="/users/add">
+      <label for="">First name</label>
+      <input type="text" name="first_name">
+      <br>
+      <label for="">Last name</label>
+      <input type="text" name="last_name">
+      <br>
+      <label for="">Email</label>
+      <input type="text" name="email">
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+    <br>
+    <h2>Users from the DB</h2>
+    <% users.forEach(function(user){ %>
+      <li>
+        <%= user.first_name %>
+          <%= user.last_name %> - <a href="#" class="deleteUser" data-id="<%= user._id %>">Delete</a>
+      </li>
+      <% }) %>
+  </body>
+  <% include partials/footer %>
